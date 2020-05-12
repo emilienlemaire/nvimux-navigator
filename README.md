@@ -1,6 +1,6 @@
 Nvimux
 =======================
-This plugin enables you to navigate navigate seamlessly between nvim and tmux. It is greatly inspired by Chris Tommey's [vim_-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator).
+This plugin enables you to navigate navigate seamlessly between nvim and tmux. It is greatly inspired by Chris Tommey's [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator).
 
 Installation
 --------------
@@ -29,4 +29,4 @@ The arg can be `h`, `j`, `k`, or `l` respectively for left, down, up and right.
 
 Command | Arguments | Action
 --- | --- | ---
-`NvimuxLinkPane` | pane__id | `pane_id`: Specify the pane you'd like to link Nvim with. Must be under the format: `%n`.
+`NvimuxLinkPane` | pane_id | `pane_id`: Specify the pane you'd like to link Nvim with. Must be under the format: `%n`.
