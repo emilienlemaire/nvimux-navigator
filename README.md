@@ -30,4 +30,4 @@ The arg can be `h`, `j`, `k`, or `l` respectively for left, down, up and right.
 Command | Action
 --- | ---
 `NvimuxLinkPane (pane_id)` | `pane_id`: Specify the pane you'd like to link Nvim with. Must be under the format: `%n`.
-`NvimuxOpenPane [-a|-t target|-v|-d dir]` | `-a`: attach to the new opened pane `-t target`: specify the target from which to create the new pane `-v`: open the new pane vertically `-d dir`: open the pane in the `dir` directory
+`NvimuxOpenPane [-a\|-t target\|-v\|-d dir]` | * `-a`: attach to the new opened pane * `-t target`: specify the target from which to create the new pane * `-v`: open the new pane vertically * `-d dir`: open the pane in the `dir` directory
