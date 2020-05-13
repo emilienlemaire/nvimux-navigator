@@ -1,4 +1,4 @@
-Nvimux
+Nvimux-Navigator
 =======================
 This plugin enables you to navigate navigate seamlessly between nvim and tmux. It is greatly inspired by Chris Tommey's [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator).
 
