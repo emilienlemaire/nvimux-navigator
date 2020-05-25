@@ -1,0 +1,61 @@
+nvimux_navigator.txt Navigate between tmux and nvim
+
+==============================================================================
+CONTENTS                                             *NvimuxNavigatorContents*
+
+    1. Usage .............. |NvimuxNavigatorUsage|
+        1.1 Functions ..... |NvimuxNavigatorFunctions|
+        1.2 Commands ...... |NvimuxNavigatorCommands|
+    2. Mappings ........... |NvimuxNavigatorMappings|
+    3. License ............ |NvimuxNavigatorLicense|
+    4. Contributing ....... |NvimuxNavigatorContributing|
+    5. Credits ............ |NvimuxNavigatorCredits|
+
+==============================================================================
+1. Usage                                                *NvimuxNavigatorUsage*
+
+This plugin enables you to navigate between nvim and your tmux panes easyly,
+as well as sending commands or key to a selected tmux pane.
+
+-------------------------------------------------------------------------------
+1.1 Functions                                        *NvimuxNavigatorFunctions*
+
+NvimuxNavigate({direction})                                  *NvimuxNavigate()*
+    This function helps you to navigate between your nvim windows, if nvim is
+    in a tmux session and you reach the last window of nvim and if a tmux
+    pane is open in the direction you navigate it will jump directly to the 
+    tmux pane.
+    {direction} must be either 'h','j','k' or 'l' to navigate respectivly to
+    the left, down, up or right.
+
+-------------------------------------------------------------------------------
+1.2 Commands                                          *NvimuxNavigatorCommands*
+
+:NvimuxLinkPane <pane_id>                                     *:NvimuxLinkPane*
+    Link the specified pane to your current nvim session. You can then send
+    commands or keys to this pane using |:NvimuxSendCommand| and
+    |:NvimuxSendKeys|. The <pane_id> argument must respect the format: %id.
+    Example: >
+        :NvimuxLinkPane %2
+<
+:NvimuxOpenPane [-a -t <target> -v -d <dir>]                  *:NvimuxOpenPane*
+    Open a new tmux pane. The flags have the following effects:
+        -a : attach to the newly opened pane.
+        -t <target> : select the target from which to open the new pane.
+        -v : split the window vertically (the default opening direction being
+          horizontal)
+        -d <dir> : open the pane in the specified <dir> directory.
+
+:NvimuxOpenAndLink [-a -t <target> -v -d <dir>]            *:NvimuxOpenAndLink*
+    Open a new tmux pane and link it directly to your nvim session. For the
+    flags please check the |:NvimuxOpenPane| as they are the same.
+
+:NvimuxSendCommand <cmd>                                    *:NvimuxSendCommand*
+    Send a command to the linked pane. If no pane is linked or there is no
+    tmux session, the command will do nothing and display an error message.
+    The <cmd> must be a valid tmux command.
+
+:NvimuxSendKeys [-e -l] <keys>                                 *:NvimuxSendKeys*
+    Send the <keys> to the tmux linked pane. The flags have the following effet:
+
+vim:tw=78:ts=8:ft=help:norl:

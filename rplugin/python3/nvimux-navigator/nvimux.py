@@ -59,9 +59,6 @@ class Nvimux(object):
             if at_tab_page_end:
                 sel = "-{}".format(direction.translate(self.transtab))
                 pane = self._tmux_select_pane(sel)
-                pane_id = pane.get('pane_id')
-                window_id = pane.window.get('window_id')
-                session_id = pane.window.session.get('session_id')
         else:
             self._nvim_navigate(args[0])
 
@@ -140,7 +137,7 @@ class Nvimux(object):
             self._no_tmux()
             return None
 
-    @pynvim.command('NvimuxOpenAndLink', nargs='*', range='')
+    @pynvim.command('NvimuxOpenAndLink', nargs='*')
     def nvimux_open_and_link(self, args):
         pane = self.nvimux_open_pane(args)
         if isinstance(pane, libtmux.Pane):
