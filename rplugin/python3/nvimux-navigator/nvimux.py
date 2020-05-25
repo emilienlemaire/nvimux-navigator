@@ -140,7 +140,7 @@ class Nvimux(object):
             self._no_tmux()
             return None
 
-    @pynvim.command('NvimuxOpenAndLink', nargs='*', range='')
+    @pynvim.command('NvimuxOpenAndLink', nargs='*')
     def nvimux_open_and_link(self, args):
         pane = self.nvimux_open_pane(args)
         if isinstance(pane, libtmux.Pane):
