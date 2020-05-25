@@ -1,0 +1,114 @@
+nvimux_navigator.txt Navigate between tmux and nvim
+
+==============================================================================
+CONTENTS                                             *NvimuxNavigatorContents*
+
+    1. Usage .............. |NvimuxNavigatorUsage|
+        1.1 Functions ..... |NvimuxNavigatorFunctions|
+        1.2 Commands ...... |NvimuxNavigatorCommands|
+    2. Mappings ........... |NvimuxNavigatorMappings|
+    3. Configuration ...... |NvimuxNavigatorConfiguration|
+    4. License ............ |NvimuxNavigatorLicense|
+    5. Contributing ....... |NvimuxNavigatorContributing|
+    6. Credits ............ |NvimuxNavigatorCredits|
+
+==============================================================================
+1. Usage                                                *NvimuxNavigatorUsage*
+
+This plugin enables you to navigate between nvim and your tmux panes easyly,
+as well as sending commands or key to a selected tmux pane.
+
+-------------------------------------------------------------------------------
+1.1 Functions                                        *NvimuxNavigatorFunctions*
+
+NvimuxNavigate({direction})                                  *NvimuxNavigate()*
+    This function helps you to navigate between your nvim windows, if nvim is
+    in a tmux session and you reach the last window of nvim and if a tmux
+    pane is open in the direction you navigate it will jump directly to the 
+    tmux pane.
+    {direction} must be either 'h','j','k' or 'l' to navigate respectivly to
+    the left, down, up or right.
+
+-------------------------------------------------------------------------------
+1.2 Commands                                          *NvimuxNavigatorCommands*
+
+:NvimuxLinkPane <pane_id>                                     *:NvimuxLinkPane*
+    Link the specified pane to your current nvim session. You can then send
+    commands or keys to this pane using |:NvimuxSendCommand| and
+    |:NvimuxSendKeys|. The <pane_id> argument must respect the format: %id.
+    If you are not sure of the tmux pane id you wish to link, run
+    "echo $TMUX_PANE" in your shell.
+    Example: >
+        :NvimuxLinkPane %2
+<
+:NvimuxOpenPane [-a -t <target> -v -d <dir>]                  *:NvimuxOpenPane*
+    Open a new tmux pane. The flags have the following effects:
+        -a : attach to the newly opened pane.
+        -t <target> : select the target from which to open the new pane.
+        -v : split the window vertically (the default opening direction being
+          horizontal)
+        -d <dir> : open the pane in the specified <dir> directory.
+
+:NvimuxOpenAndLink [-a -t <target> -v -d <dir>]            *:NvimuxOpenAndLink*
+    Open a new tmux pane and link it directly to your nvim session. For the
+    flags please check the |:NvimuxOpenPane| as they are the same.
+
+:NvimuxSendCommand <cmd>                                    *:NvimuxSendCommand*
+    Send a command to the linked pane. If no pane is linked or there is no
+    tmux session, the command will do nothing and display an error message.
+    The <cmd> must be a valid tmux command.
+
+:NvimuxSendKeys [-e -l] <keys>                                 *:NvimuxSendKeys*
+    Send the <keys> to the tmux linked pane. The flags have the following
+    effet:
+        -e : The enter key will not be send to the pane.
+        -l : The keys won't be send litteraly.
+    It is advised to use |:NvimuxSendCommand| when possible and to avoid
+    using this command to send tmux mapped keys as it doesn't work all the
+    time.
+    A few examples: > >
+        :NvimuxSendKeys echo Hello (sends "echo Hello<cr>" to the pane.)
+        :NvimuxSendKeys C-c (sends "C-c<cr>" to the pane.)
+        :NvimuxSendKeys -e C-c (sends "C-c" to the pane.)
+        :NvimuxSendKeys -e -l C-c (sends ctrl-c to the pane.)
+<<
+
+===============================================================================
+2. Mappings                                             *NvimuxNavigatorMappings*
+
+Key         Mapping
+<C-h>.......:call NvimuxNavigate('h')<cr>
+<C-j>.......:call NvimuxNavigate('j')<cr>
+<C-k>.......:call NvimuxNavigate('k')<cr>
+<C-l>.......:call NvimuxNavigate('l')<cr>
+
+===============================================================================
+3. Configuration                                   *NvimuxNavigatorConfiguration*
+
+If you wish to change the defaults mappings you can use set the variable:
+
+    let g:nvimux_no_binding=1
+
+All the |NvimuxNavigatorMappings| will be disable and you can choose to map
+the navigation to your prefered bindings.
+
+===============================================================================
+4. License                                               *NvimuxNavigatorLicense*
+
+Nvimux-navigator is MIT licensed.
+libtmux is MIT licensed.
+pynvim is under Apache-2.0 license.
+
+===============================================================================
+5. Contributing                                     *NvimuxNavigatorContributing*
+
+If you wish to contribute to this plugin, please check the github repository:
+https://github.com/emilienlemaire/nvimux-navigator
+
+===============================================================================
+6. Credits                                               *NvimuxNavigatorCredits*
+
+This plugin is inspired by Chris Toomey's vim-tmux-navigator
+(https://github.com/christoomey/vim-tmux-navigator).
+
+vim:tw=78:ts=8:ft=help:norl:
