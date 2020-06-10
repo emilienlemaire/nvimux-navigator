@@ -58,7 +58,7 @@ class Nvimux(object):
             at_tab_page_end = (nb == self.nvim.eval('winnr()'))
             if at_tab_page_end:
                 sel = "-{}".format(direction.translate(self.transtab))
-                pane = self._tmux_select_pane(sel)
+                self._tmux_select_pane(sel)
         else:
             self._nvim_navigate(args[0])
 
